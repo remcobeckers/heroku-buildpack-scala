@@ -27,12 +27,12 @@ export_env_dir $ENV_DIR
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 
-# create default system.properties 
+# create default system.properties
 if [ ! -f ${BUILD_DIR}/system.properties ]; then
   echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties
 fi
 
-# install JDK 
+# install JDK
 javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}..."
 install_java ${BUILD_DIR} ${javaVersion}
@@ -69,11 +69,11 @@ if ! has_supported_sbt_version ${BUILD_DIR}; then
 	echo " !      You must use a release verison of sbt, sbt.version=0.11.0 or greater"
 	exit 1
 fi
- 
+
 SBT_VERSION="$(get_supported_sbt_version ${BUILD_DIR})"
 SBT_JAR="sbt-launch.jar"
 SBT_PROPS="sbt-$SBT_VERSION.boot.properties"
-SBT_URL="http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.1/$SBT_JAR"
+SBT_URL="http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.2/$SBT_JAR"
 SBT_PROPS_URL="http://s3.amazonaws.com/heroku-jvm-langpack-scala/$SBT_PROPS"
 ## in 0.10 start-script will depend on package, if packaging
 ## is required - it may not be, we can run .class files or a package-war
