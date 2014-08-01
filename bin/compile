@@ -86,6 +86,11 @@ SBT_TASKS="compile stage"
 # See: https://devcenter.heroku.com/articles/scala-support#clean-builds
 [ "$SBT_CLEAN" = "true" ] && SBT_TASKS="clean $SBT_TASKS"
 
+if [ "$IVY_CLEAN" = "true" ]; then
+  echo "-----> Cleaning ivy cache from the slug"
+  rm -rf $SBT_USER_HOME/.ivy2
+fi
+
 if [ ! -d .ivy2/cache ]; then
    mkdir -p .ivy2/cache
 fi
